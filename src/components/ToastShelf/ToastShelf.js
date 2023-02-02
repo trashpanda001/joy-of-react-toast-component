@@ -1,14 +1,15 @@
 import React from "react";
-
+import { ToastContext } from "../ToastProvider";
 import Toast from "../Toast";
 import styles from "./ToastShelf.module.css";
 
-function ToastShelf({ toasts, onDismissToast }) {
+function ToastShelf() {
+  const { toasts, removeToast } = React.useContext(ToastContext);
   return (
     <ol className={styles.wrapper}>
       {toasts.map((toast) => (
         <li key={toast.id} className={styles.toastWrapper}>
-          <Toast variant={toast.variant} onClose={() => onDismissToast(toast)}>
+          <Toast variant={toast.variant} onClose={() => removeToast(toast)}>
             {toast.message}
           </Toast>
         </li>
@@ -17,4 +18,4 @@ function ToastShelf({ toasts, onDismissToast }) {
   );
 }
 
-export default ToastShelf;
+export default React.memo(ToastShelf);
