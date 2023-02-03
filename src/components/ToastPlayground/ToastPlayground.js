@@ -13,9 +13,11 @@ function ToastPlayground() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    addToast(message, variant);
-    setMessage("");
-    setVariant(VARIANT_OPTIONS[0]);
+    if (message.trim() !== "") {
+      addToast(message, variant);
+      setMessage("");
+      setVariant(VARIANT_OPTIONS[0]);
+    }
   }
 
   return (
