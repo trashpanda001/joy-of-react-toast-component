@@ -2,14 +2,14 @@ import React from "react";
 import Button from "../Button";
 import ToastShelf from "../ToastShelf";
 import styles from "./ToastPlayground.module.css";
-import { ToastContext } from "../ToastProvider";
+import { useToast } from "../ToastProvider";
 
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function ToastPlayground() {
   const [message, setMessage] = React.useState("");
   const [variant, setVariant] = React.useState(VARIANT_OPTIONS[0]);
-  const { addToast } = React.useContext(ToastContext);
+  const { addToast } = useToast();
 
   function handleSubmit(event) {
     event.preventDefault();
